@@ -1,5 +1,6 @@
 var webpack           = require('webpack'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    path              = require('path');
 
 var PROD = JSON.parse(process.env.PROD_ENV || '0');
 
@@ -31,6 +32,10 @@ module.exports = [{
         loader: 'babel-loader',
       }
     ]
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true
   },
   resolve: {
       alias: { 'vue' : '../node_modules/vue/dist/vue.min.js'}
