@@ -12,7 +12,7 @@ var htmlConf = new HtmlWebpackPlugin({
 
 module.exports = [{
   name: 'Bundle JS',
-  entry: ['./src/index.js'],
+  entry: ['./src/scss/main.scss','./src/index.js'],
   output: {
     filename: PROD ? './dist/bundle.min.js' : './dist/bundle.js'
   },
@@ -26,6 +26,16 @@ module.exports = [{
   ],
   module: {
     rules: [
+      {
+        test: /\.scss$/,
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        }, {
+            loader: "sass-loader" // compiles Sass to CSS
+        }]
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
